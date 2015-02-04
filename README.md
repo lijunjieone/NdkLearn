@@ -28,14 +28,14 @@ JNIEXPORT jstring JNICALL Java_com_mx_jnilearn_MainActivity_getTextFromJni
 ```
 - 编译so,NDK_DEBUG=1很重要
 
->ndk-build NDK_DEBUG=1
+ >ndk-build NDK_DEBUG=1
 
 - debug方式运行工程。
 - 在工程根目录下/tmp/a/ 运行ndk-gdb
 - 进入ndk-gdb 命令行
 - i sharedlibrary 可以看到那些so被加载，如果我们的so没有加载可以用下面命令
 
->file obj/local/armeabi/libsearch-algorithm.so
+ >file obj/local/armeabi/libsearch-algorithm.so
 
 - l 命令可以显示源码,不能显示源码肯定不能调试
 - info breakpoints 显示断点列表，目前可能为空
@@ -79,12 +79,12 @@ JNIEXPORT jstring JNICALL Java_com_mx_jnilearn_MainActivity_getTextFromJni
 }
 ```
 
->因为env=0，所以调用env的对象时会发生闪退
+ >因为env=0，所以调用env的对象时会发生闪退
 
 - 运行程序
 - adb logcat | grep DEBUG 监控闪退日志
 
->********** Crash dump: **********
+ >********** Crash dump: **********
 Build fingerprint: 'google/hammerhead/hammerhead:5.0/LRX21O/1570415:user/release-keys'
 pid: 15424, tid: 15424, name: com.mx.jnilearn  >>> com.mx.jnilearn <<<
 signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x0
@@ -95,7 +95,7 @@ Stack frame #02 pc 000dc0a1  /data/dalvik-cache/arm/data@app@com.mx.jnilearn-1@b
 - 闪退后使用
 - 在工程根目录下使用 adb logcat | ndk-stack -sym obj/local/armeabi-v7a/
 
->********** Crash dump: **********
+ >********** Crash dump: **********
 Build fingerprint: 'google/hammerhead/hammerhead:5.0/LRX21O/1570415:user/release-keys'
 pid: 15424, tid: 15424, name: com.mx.jnilearn  >>> com.mx.jnilearn <<<
 signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x0
