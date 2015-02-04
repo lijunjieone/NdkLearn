@@ -29,6 +29,7 @@ JNIEXPORT jstring JNICALL Java_com_mx_jnilearn_MainActivity_getTextFromJni
 - 编译so,NDK_DEBUG=1很重要
 
 >ndk-build NDK_DEBUG=1
+
 - debug方式运行工程。
 - 在工程根目录下/tmp/a/ 运行ndk-gdb
 - 进入ndk-gdb 命令行
