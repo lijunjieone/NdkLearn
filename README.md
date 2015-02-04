@@ -5,13 +5,17 @@
 #步骤
 - 写一个比较简单的工程/tmp/a/下，工程的包名为com.mx.jnitest,类名MainActivity，在工程中使用jni返回一个字符串
 - 定义一个jni的代码实现
+
   > private static native String getTextFromJni()
 -  加载这个jni库
+
   > System.loadLibrary("hello-jni")
 加载的两种方式loadLibrary和load，区别在于load需要制定绝对路径
 - 使用javap命令生成头文件
+
   > javap -classpath /tmp/a com.mx.jnitest.MainActivity 
 -  实现getTextFromJni()
+
   ```java
 JNIEXPORT jstring JNICALL Java_com_mx_jnilearn_MainActivity_getTextFromJni
   (JNIEnv * env, jobject thiz){
@@ -23,12 +27,15 @@ JNIEXPORT jstring JNICALL Java_com_mx_jnilearn_MainActivity_getTextFromJni
 }
 ```
 - 编译so,NDK_DEBUG=1很重要
+
 >ndk-build NDK_DEBUG=1
 - debug方式运行工程。
 - 在工程根目录下/tmp/a/ 运行ndk-gdb
 - 进入ndk-gdb 命令行
 - i sharedlibrary 可以看到那些so被加载，如果我们的so没有加载可以用下面命令
+
 >file obj/local/armeabi/libsearch-algorithm.so
+
 - l 命令可以显示源码,不能显示源码肯定不能调试
 - info breakpoints 显示断点列表，目前可能为空
 - b hello-jni.c:8 在hello-jni.c文件的第8行设置一个断点
@@ -75,6 +82,7 @@ JNIEXPORT jstring JNICALL Java_com_mx_jnilearn_MainActivity_getTextFromJni
 
 - 运行程序
 - adb logcat | grep DEBUG 监控闪退日志
+
 >********** Crash dump: **********
 Build fingerprint: 'google/hammerhead/hammerhead:5.0/LRX21O/1570415:user/release-keys'
 pid: 15424, tid: 15424, name: com.mx.jnilearn  >>> com.mx.jnilearn <<<
@@ -85,6 +93,7 @@ Stack frame #02 pc 000dc0a1  /data/dalvik-cache/arm/data@app@com.mx.jnilearn-1@b
 
 - 闪退后使用
 - 在工程根目录下使用 adb logcat | ndk-stack -sym obj/local/armeabi-v7a/
+
 >********** Crash dump: **********
 Build fingerprint: 'google/hammerhead/hammerhead:5.0/LRX21O/1570415:user/release-keys'
 pid: 15424, tid: 15424, name: com.mx.jnilearn  >>> com.mx.jnilearn <<<
