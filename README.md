@@ -3,7 +3,7 @@
 #目的
 可以调试ndk代码
 #步骤
-- 写一个比较简单的工程/tmp/a/下，工程的包名为com.mx.jnitest,类名MainActivity，在工程中使用jni返回一个字符串
+- 写一个比较简单的工程/tmp/a/下，签出本工程到/tmp/a下，在工程中使用jni返回一个字符串
 - 定义一个jni的代码实现
 
   > private static native String getTextFromJni()
